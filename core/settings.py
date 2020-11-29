@@ -33,10 +33,10 @@ DATABASE = os.path.join(BASE_DIR, "db.sqlite3")
 # 脚本运行时的logo
 LOGO = r"""
 ===============苏宁捕逾系统数据导出工具===========
-   ___ ___  _ __   __ _ _ __
-  / __/ _ \| '_ \ / _` | '_ \       作者: Jeyrce.Lu
- | (_| (_) | | | | (_| | | | |      版本: %s
-  \___\___/|_| |_|\__,_|_| |_|      祝你好运!
+            版本： %s
+            作者： Jeyrce.Lu
+            祝你好运!
+-------------------------------------------------
 """ % VERSION
 
 # api基本地址
@@ -50,4 +50,4 @@ HEADERS = {
 }
 
 # 账号信息表格文件
-ACCOUNT_XLSX = os.path.join(BASE_DIR, "账号.xls")
+ACCOUNT_XLSX = os.path.join(BASE_DIR, "账号.xlsx")

@@ -21,17 +21,18 @@ class BaseSerializer(object):
     #     如果__model__中没有xx这个字段，则可以定义一个_get_xx(item)方法动态获取, 其中item是__model__的实例
     __fields__: Tuple[Tuple[AnyStr, AnyStr]] = ((),)
     __sheet__: AnyStr = ""  # 生成的sheet名, 为空则默认为表名
+    sheet_size = 10000
 
     def __init__(self, book: Workbook, account: str = None):
         self.book = book  # 从外部传过来的工作簿
         self.account = account  # 传入账户则导出特定账户的数据
 
-    def get_sheet(self):
+    def get_sheet(self, sheet_name=None):
         """
         获取当前写入的sheet
         """
         assert isinstance(self.__sheet__, str), "Not supported sheet name"
-        sheet_name = self.__sheet__ or self.__model__.__tablename__
+        sheet_name = sheet_name or self.__sheet__ or self.__model__.__tablename__
         try:
             sheet = self.book.get_sheet(sheet_name)
         except:
@@ -95,10 +96,12 @@ class BaseSerializer(object):
         导出的具体实现
         """
         console(f"Model {self.__class__.__name__} excel making".center(80, "="))
-        sheet = self.get_sheet()
         queryset = self.get_queryset()
-        self.write_title(sheet)
-        self.write_data(sheet, queryset)
+        num = (len(queryset) // self.sheet_size) + 1
+        for i in range(0, num):
+            sheet = self.get_sheet(f"sheet{i}")
+            self.write_title(sheet)
+            self.write_data(sheet, queryset[i * self.sheet_size:(i + 1) * self.sheet_size])
         return self.book
 
 

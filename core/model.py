@@ -49,7 +49,7 @@ class Base(object):
         :return:
         """
         with get_session() as session:
-            return session.query(cls).filter_by(cls.account == account).all()
+            return session.query(cls).filter_by(account=account).all()
 
 
 BaseModel = declarative_base(bind=engine, name='BaseModel', metadata=meta_data, cls=Base)
