@@ -35,7 +35,8 @@ def console(txt, color="", with_log=True):
     :return: None
     """
     # 输出颜色字符到控制台
-    colored_string = color_base.format(txt=txt, color=color_map.get(color, "7"))
+    # colored_string = color_base.format(txt=txt, color=color_map.get(color, "7"))
+    colored_string = txt  # windows 暂时不考虑颜色
     print(colored_string)
     if with_log:
         # 输出字符到日志

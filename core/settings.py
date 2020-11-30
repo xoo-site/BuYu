@@ -5,6 +5,7 @@ __purpose__ = 一些配置文件
 """
 import os
 import logging
+import datetime
 
 # 当前软件版本
 VERSION = "1.0.0"
@@ -16,7 +17,7 @@ BASE_DIR = os.getcwd()
 CONF_PATH = os.path.join(BASE_DIR, "config.yml")
 
 # 日志保存路径
-LOG_PATH = os.path.join(BASE_DIR, 'buyu.log')
+LOG_PATH = os.path.join(BASE_DIR, f'buyu-{datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")}.log')
 
 # 日志级别
 LOG_LEVEL = logging.INFO

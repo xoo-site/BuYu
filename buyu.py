@@ -75,19 +75,9 @@ if __name__ == '__main__':
     # 初始化
     init()
     accounts = load_account(ACCOUNT_XLSX)
-    # while True:
-    #     speed = input("输入采集速度回车继续[1-10]: ")
-    #     try:
-    #         speed = int(speed)
-    #     except Exception as e:
-    #         console("请输入一个合理的采集速度")
-    #         continue
-    #     else:
-    #         if speed < 1 or speed > 10:
-    #             console("请输入一个合理的采集速度")
-    #             continue
-    #         else:
-    #             break
+    console("5秒后将开始采集...")
+    time.sleep(5)
     for account in accounts:
         collect(account, 10)
+    input("\n所有帐号采集完毕、窗口可以关闭了!")
     sys.exit(0)
