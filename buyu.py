@@ -79,5 +79,6 @@ if __name__ == '__main__':
     time.sleep(5)
     for account in accounts:
         collect(account, 10)
+    console(LOGO)
     input("\n所有帐号采集完毕、窗口可以关闭了!")
     sys.exit(0)
